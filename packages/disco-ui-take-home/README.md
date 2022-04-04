@@ -12,7 +12,7 @@ Why a take-home assignment? We want something that reflects how engineers work i
 
 ## This Repo
 
-Please fork this repo, and then to begin simply run:
+Please fork this repo (and checkout the `javascript` branch if you want to code in JS instead of TS), and then to begin simply run:
 
 ```bash
 yarn install
