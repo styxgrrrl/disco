@@ -103,9 +103,15 @@ const discoTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      light: "#D6FFF8",
-      main: "#80DEEA",
-      dark: "#80DEEA",
+      light: "#F6C6FF",
+      main: "#C295F3",
+      dark: "#9066C0",
+      contrastText: "#000",
+    },
+    secondary: {
+      light: "#63F4FF",
+      main: "#01C0D6",
+      dark: "#0090A5",
       contrastText: "#000",
     },
   },

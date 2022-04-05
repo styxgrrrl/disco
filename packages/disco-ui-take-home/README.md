@@ -1,43 +1,55 @@
-# Disco UI Take-Home Exercise
+# Disco Full-Stack Take-Home Exercise
 
 ## Introduction
 
-This exercise will be to 1) implement an "issue credential" flow combining some pre-made components, and 2) create a reusable "success" component for that flow.
+This exercise will be to implement APIs that help aggregate profile data saved to Ceramic (a decentralized storage network), and to integrate these APIs into frontend components.
 
-We hope you can spend roughly 2 hours on this exercise. Please do not spend more! If you end up needing more time, please stop working and document any extra work you would do to complete it. An incomplete submission is okay; the only requirement is that Storybook runs and that the component loads without error.
+We hope you can spend roughly 2 hours on this exercise. Please do not spend more! If you end up needing more time, please stop working and document any extra work you would do to complete it. An incomplete or stubbed-out submission is okay; the only requirement is that everything runs without error.
 
-We are looking for a submission that is clear, readable, and maintainable. It need not be pixel-perfect, though you are free to play with the design.
+We are looking for a submission that is clear, readable, maintainable, and performant.
 
 Why a take-home assignment? We want something that reflects how engineers work in practice, without the pressure of live coding, and with the freedom to look things up, take a break, or rewrite parts.
 
+## Requirements
+
+- @TODO/tobek
+- This repo was built and tested with Node v16.14.0 and Yarn v1.22.18
+- The [MetaMask extension](https://metamask.io/download/) installed and set up
+
+Please let us know if there are any technical issues with the assignment (e.g. build or environment issues).
+
 ## This Repo
 
-Please fork this repo (and checkout the `javascript` branch if you want to code in JS instead of TS), and then to begin simply run:
+Please fork this repo, and then to begin simply run:
 
 ```bash
 yarn install
+yarn start
+# in a separate terminal:
 yarn storybook
 ```
 
-Once it has completed, Storybook will load in your browser. Please click around to have a look at existing components. Storybook will live reload as you make changes.
+This will run both the backend server and Storybook for frontend components. Both will live reload on code changes.
 
-This exercise concerns issuing "Verifiable Credentials" (VCs). These are digital documents issued by one entity's Decentralized Identifier (DID) about another. This could be a driver's license, covid pass, university diploma, etc. In this exercise, the credential will be a simple "kudos" that one user is sending to another user to appreciate them for something.
+### Frontend
 
-Components that have already been implemented that you will be using in this exercise are:
+Please browse Storybook to see and try out the various components. You will be working with the ones in the Profiles folder.
 
-- [`Credential`](src/components/credentials/Credential.tsx) - this receives a credential object and displays it. You can see example usage of this component in [`Credential.stories.tsx`](src/components/credentials/Credential.stories.tsx)
-- [`IssueCredentialForm`](src/components/credentials/IssueCredentialForm.tsx) - this is a controlled component that receives a credential object, displays form fields to edit it, and sends updates to its parent component via `props.onChange`. Example usage in [`IssueCredentialForm.stories.tsx`](src/components/credentials/IssueCredentialForm.stories.tsx)
+All of the UI has been implemented - you will be integrating API calls into the following two components:
+
+- [`ProfileEdit`](src/components/profiles/ProfileEdit.tsx) - this lets a user edit their profile. You will be integrating an API call to update the backend about the user's DID
+- [`ProfilesList`](src/components/profiles/ProfilesList.tsx) - this lists multiple profiles according to their DIDs. You will be integrating an API call to fetch which DIDs to display.
 - Feel free to use any of the other components in this repo, all of which have Storybook files (`*.stories.tsx`) demonstrating their usage
 
-Please let us know if there are any technical issues with the assignment (e.g. build or environment issues). This repo was built and tested with Node v16.14.0 and Yarn v1.22.18
+### Backend
+
+@TODO
 
 ## Instructions
 
+**@TODO/tobek the rest of this readme is from the UI take-home**
+
 The goal of this exercise is to implement an "issue credential" flow using pre-built components, and also create a success component for that flow.
-
-Here is an example of this flow (note that it doesn't have to look exactly like this, this is simply representative of the UX):
-
-![UX flow wireframes](ux-flow.jpg)
 
 ### Issue Credential flow
 
