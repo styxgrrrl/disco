@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof DidView>;
 
 const Template: ComponentStory<typeof DidView> = () => (
-  <DidView copy did="did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw" />
+  <DidView copy did="did:3:kjzl6cwe1jw148uyox3goiyrwwe3aab8vatm3apxqisd351ww0dj6v5e3f61e8b" />
 );
 
 export const View = Template.bind({});

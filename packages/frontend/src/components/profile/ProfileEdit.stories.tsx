@@ -12,3 +12,4 @@ const Template: ComponentStory<typeof ProfileEdit> = (args) => {
 };
 
 export const profileEdit = Template.bind({});
+profileEdit.storyName = "ProfileEdit";

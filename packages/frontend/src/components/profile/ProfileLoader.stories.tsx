@@ -1,23 +1,26 @@
 import React from "react";
 import { ComponentStory } from "@storybook/react";
-import { ProfileView } from "./ProfileView";
+import { ProfileLoader } from "./ProfileLoader";
+import { Profile } from "../../types";
 
 export default {
   title: "Profiles",
-  component: ProfileView,
+  component: ProfileLoader,
 };
 
-const Template: ComponentStory<typeof ProfileView> = (args) => {
+const Template: ComponentStory<typeof ProfileLoader> = () => {
   const [did, setDid] = React.useState("did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw");
+
   return (
     <>
       <div>
         ceramic DID: <input type="text" value={did} onChange={(e) => setDid(e.target.value)} />
         <br />
       </div>
-      {did && <ProfileView {...args} did={did} />}
+      {did && <ProfileLoader did={did} />}
     </>
   );
 };
 
-export const profileView = Template.bind({});
+export const profileLoader = Template.bind({});
+profileLoader.storyName = "ProfileLoader";

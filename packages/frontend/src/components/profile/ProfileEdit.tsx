@@ -2,6 +2,7 @@ import * as React from "react";
 import { Profile } from "../../types";
 import { CeramicContext } from "../../contexts/";
 import { Box, Button, FormControl, TextField, Typography, CircularProgress } from "@mui/material";
+import { DidView } from "../DidView";
 
 export interface ProfileEditProps {
   onSaveComplete?(): void;
@@ -38,6 +39,7 @@ export const ProfileEdit: React.FC<ProfileEditProps> = (props) => {
     <Box>
       <Box mb={3}>
         <Typography variant="h4">Edit Profile</Typography>
+        <DidView did={userDid} typographyVariant="body2" copy dontTruncate />
       </Box>
 
       <FormControl fullWidth sx={{ marginBottom: 3 }}>

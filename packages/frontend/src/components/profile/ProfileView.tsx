@@ -1,38 +1,18 @@
 import * as React from "react";
-import { UserData } from "../../types";
-import { CeramicContext } from "../../contexts/";
-import { Box, CircularProgress, Container, Typography } from "@mui/material";
+import { Profile } from "../../types";
+import { Box, Container, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import { discoLinearGradientDark } from "../../themes";
 import { DidView, DiscoButton } from "../";
 
-export const ProfileView: React.FC<{ did: string }> = ({ did }) => {
-  const { userDid, getUserData } = React.useContext(CeramicContext);
-  const [userData, setUserData] = React.useState<UserData>({});
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    (async () => {
-      setUserData((await getUserData(did)) || {});
-      setLoading(false);
-    })();
-  }, [did, getUserData]);
-
-  if (loading) {
-    return (
-      <Box sx={{ alignItems: "center", display: "flex", justifyContent: "center", padding: "50px 0", width: "100%" }}>
-        <CircularProgress />
-      </Box>
-    );
-  }
-
+export const ProfileView: React.FC<{ did: string, profile: Profile }> = ({ did, profile }) => {
   return (
     <>
       <Box
         mb={3}
         sx={{
           backgroundColor: "transparent",
-          backgroundImage: userData.profile?.banner ? `url(${userData.profile.banner})` : discoLinearGradientDark,
+          backgroundImage: profile.banner ? `url(${profile.banner})` : discoLinearGradientDark,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -52,8 +32,8 @@ export const ProfileView: React.FC<{ did: string }> = ({ did }) => {
               width: ["100px", "200px"],
             }}
           >
-            {userData.profile?.avatar ? (
-              <img src={userData.profile?.avatar} alt="avatar" style={{ height: "100%", width: "100%" }} />
+            {profile.avatar ? (
+              <img src={profile.avatar} alt="avatar" style={{ height: "100%", width: "100%" }} />
             ) : (
               <Box
                 sx={{
@@ -72,15 +52,15 @@ export const ProfileView: React.FC<{ did: string }> = ({ did }) => {
           <Box sx={{ alignItems: "flex-start", display: "flex", justifyContent: "space-between" }}>
             <Box>
               <Box sx={{ marginBottom: "16px" }}>
-                {userData.profile?.name ? (
-                  <Typography variant="h5">{userData.profile?.name}</Typography>
+                {profile.name ? (
+                  <Typography variant="h5">{profile.name}</Typography>
                 ) : (
                   <DidView did={did} typographyVariant="h5" copy />
                 )}
-                {userData.profile?.name && <DidView did={did} copy />}
+                {profile.name && <DidView did={did} copy />}
               </Box>
               <Box sx={{ maxWidth: "500px", width: "100%" }}>
-                {userData.profile?.bio && <Typography variant="body2">{userData.profile?.bio}</Typography>}
+                {profile.bio && <Typography variant="body2">{profile.bio}</Typography>}
               </Box>
             </Box>
           </Box>

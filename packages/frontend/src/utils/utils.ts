@@ -174,10 +174,10 @@ export const EXAMPLE_CREDENTIAL: VC = {
       },
     },
     proofPurpose: "assertionMethod",
-    verificationMethod: "did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw#controller",
+    verificationMethod: "did:3:kjzl6cwe1jw148uyox3goiyrwwe3aab8vatm3apxqisd351ww0dj6v5e3f61e8b#controller",
   },
   issuer: {
-    id: "did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw",
+    id: "did:3:kjzl6cwe1jw148uyox3goiyrwwe3aab8vatm3apxqisd351ww0dj6v5e3f61e8b",
   },
   "@context": ["https://www.w3.org/2018/credentials/v1"],
   issuanceDate: "2022-03-11T15:19:53.418Z",

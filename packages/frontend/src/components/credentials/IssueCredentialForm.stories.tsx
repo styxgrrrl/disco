@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof IssueCredentialForm> = (args) => {
   const [cred, setCred] = React.useState<any>(
-    buildCredential("did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw", {
+    buildCredential("did:3:kjzl6cwe1jw148uyox3goiyrwwe3aab8vatm3apxqisd351ww0dj6v5e3f61e8b", {
       kudos: "",
     }),
   );
