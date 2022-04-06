@@ -1,20 +1,17 @@
-# disco-full-stack-take-home
-
-> An awesome project based on Ts.ED framework
-
-See [Ts.ED](https://tsed.io) project for more information.
-
-## Build setup
-
 ```bash
-# install dependencies
 $ yarn install
-
-# serve
 $ yarn start
 ```
 
-Ceramic Helper file in `ceramichelper.ts`
+This server is based on [Ts.ED framework](https://tsed.io).
 
-There are two stubbed out API endpoints in `DIDController`
+Begin by reading through [`DidController`](src/controllers/DidController.ts) and [`DidService`](src/services/DidService.ts) in order to understand the API.
 
+Example API calls:
+
+- http://localhost:8083/v1/did/getProfileViaDid/did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw
+- http://localhost:8083/v1/did/getAllProfiles
+
+There are two stubbed out API endpoints in [`DidController`](src/controllers/DidController.ts), `registerDid` and `getAllProfiles`. You will be implementing these endpoints using the [`DidService`](src/services/DidService.ts) ORM and the [`getProfileFromCeramic`](src/common/ceramic-util.ts) helper.
+
+You can see other endpoints in `DidController` for example calls that use `DidService` and `getProfileFromCeramic`.

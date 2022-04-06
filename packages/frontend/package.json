@@ -1,10 +1,9 @@
 {
-  "name": "disco-ui-take-home",
-  "description": "Take-home coding exercise for UI engineer role",
+  "name": "frontend",
+  "description": "Frontend portion of take-home coding exercise for full-stack engineer role",
+  "version": "1.0.0",
   "author": "Disco",
   "homepage": "https://disco.xyz",
-  "repository": "discoxyz/disco-ui-take-home",
-  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -22,6 +21,7 @@
     "server:build": "react-scripts build",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
+    "start": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {

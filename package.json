@@ -1,6 +1,12 @@
 {
-  "name": "root",
-  "private": true,
+  "name": "disco-full-stake-take-home",
+  "description": "Take-home coding exercise for full-stack engineer role",
+  "version": "1.0.0",
+  "author": "Disco",
+  "homepage": "https://disco.xyz",
+  "scripts": {
+    "start": "lerna run start"
+  },
   "devDependencies": {
     "lerna": "^4.0.0"
   }

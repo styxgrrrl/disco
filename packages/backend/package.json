@@ -1,10 +1,9 @@
 {
-  "name": "disco-full-stack-take-home",
+  "name": "backend",
+  "description": "Backend portion of take-home coding exercise for full-stack engineer role",
   "version": "1.0.0",
   "author": "Disco",
-  "description": "Take-home coding exercise for full-stack engineer role",
   "homepage": "https://disco.xyz",
-  "repository": "discoxyz/disco-full-stack-take-home",
   "scripts": {
     "build": "yarn run tsc --project tsconfig.compile.json",
     "build:w": "tsc --project tsconfig.compile.json -w",
