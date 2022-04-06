@@ -4,11 +4,9 @@ import {Connection} from "typeorm";
 import { DidRepository } from "../repositories/DidRepository";
 import { Did } from "../entity/Did";
 
-
 @Injectable()
 export class DidService {
   private connection: Connection;
-  
 
   constructor(
     private typeORMService: TypeORMService,
@@ -16,21 +14,21 @@ export class DidService {
   ) {
   
   }
+
   $afterRoutesInit() {
-    this.connection = this.typeORMService.get("default")!; // get connection by name
+    this.connection = this.typeORMService.get("default")!;
   }
 
-  async registerDid(did: string): Promise<string> {
+  async registerDid(did: string): Promise<boolean> {
     const newDid = new Did();
     newDid.did = did;
-   console.log(`saved new Did`, newDid )
-   await this.connection.manager.save(newDid);
-   return did;
+    console.log("Saved new DID:", newDid);
+    await this.connection.manager.save(newDid);
+    return true;
   }
   
   async getAllDids(): Promise<Did[]> {
     const users = await this.DidRepository.findAllDids();
     return users;
   }
-
 }
