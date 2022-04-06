@@ -12,6 +12,6 @@ Example API calls:
 - http://localhost:8083/v1/did/getProfileViaDid/did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw
 - http://localhost:8083/v1/did/getAllProfiles
 
-There are two stubbed out API endpoints in [`DidController`](src/controllers/DidController.ts), `registerDid` and `getAllProfiles`. You will be implementing these endpoints using the [`DidService`](src/services/DidService.ts) ORM and the [`getProfileFromCeramic`](src/common/ceramic-util.ts) helper.
+There are two stubbed out API endpoints in [`DidController`](src/controllers/DidController.ts): `registerDid` and `getAllProfiles`. You will be implementing these endpoints using the [`DidService`](src/services/DidService.ts) ORM and the [`getProfileFromCeramic`](src/common/ceramic-util.ts) helper.
 
-You can see other endpoints in `DidController` for example calls that use `DidService` and `getProfileFromCeramic`.
+You can look at other endpoints in `DidController` to see example calls that use `DidService` and `getProfileFromCeramic`.

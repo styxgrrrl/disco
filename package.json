@@ -5,7 +5,10 @@
   "author": "Disco",
   "homepage": "https://disco.xyz",
   "scripts": {
-    "start": "lerna run start"
+    "bootstrap": "lerna bootstrap",
+    "start": "lerna run start --parallel",
+    "start:frontend": "lerna exec --scope frontend -- yarn start",
+    "start:backend": "lerna exec --scope backend yarn start"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

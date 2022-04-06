@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This exercise will be to implement APIs that help aggregate profile data saved to Ceramic (a decentralized storage network), and to integrate these APIs into frontend components.
+This exercise will be to implement APIs that help aggregate profile data saved to Ceramic (a decentralized storage network), integrate these APIs into frontend components, and consider the architectural implications of your solution.
 
 We hope you can spend roughly 2 hours on this exercise. Please do not spend more than 3! If you end up needing more time, please stop working and document any extra work you would do to complete it. An incomplete or stubbed-out submission is okay; the only requirement is that everything runs without error.
 
@@ -13,18 +13,20 @@ Why a take-home exercise? We want something that reflects how engineers work in 
 ## Requirements
 
 - Knowledge of Node.js, React, and TypeScript
-- This repo was built and tested with Node v16.14.0 and Yarn v1.22.18
-- You will need the [MetaMask browser extension](https://metamask.io/download/) installed and set up
+- Node and Yarn installed (this repo was built and tested with Node v16.14.0 and Yarn v1.22.18)
+- The [MetaMask browser extension](https://metamask.io/download/) installed and set up
 
-Please let us know if there are any technical issues with the assignment (e.g. build or environment issues). Also please let us know if you prefer to complete this exercise in JavaScript instead of TypeScript and we'll whip up a JS version.
+Please let us know if there are any technical issues with the assignment (e.g. bugs or build or environment issues).
+
+Also, please let us know if you prefer to complete this exercise in JavaScript instead of TypeScript and we'll whip up a JS version.
 
 ## Background
 
-This exercise concerns [Decentralized Identifiers](https://www.w3.org/TR/did-core/) (DIDs) - accounts with unique IDs that a user can control for various purposes. The use-case at hand is storing user profile data (name, bio, etc) on [Ceramic](https://ceramic.network/) (a decentralized storage network built on [IPFS](https://ipfs.io/)) and registering the user's DID as a new Disco user.
+This exercise concerns [Decentralized Identifiers](https://www.w3.org/TR/did-core/) (DIDs) - globally unique identifiers that reference accounts that a users can control for various purposes. The use-case at hand is storing user profile data (name, bio, etc) on [Ceramic](https://ceramic.network/) (a decentralized storage network built on [IPFS](https://ipfs.io/)) and registering the user's DID as a new Disco user.
 
 Profile data is stored on Ceramic so that other apps can independently retrieve profile data for a given user's DID: this means you can essentially take your username to a new service and your stuff will already be there.
 
-Ceramic does not meet all of our needs however, since there is no way to search Ceramic and find all users, but we would like to be able to list all users using Disco. For that reason, user DIDs must be saved to the Disco API so that we are able to list and search through Disco users.
+Ceramic does not meet all of our needs however, since there is no way to search Ceramic and find all users, but we would like to be able to list all Disco users. For that reason, you will be implementing the saving of user DIDs to the Disco API so that we are able to list and search through Disco users.
 
 ## This Repo
 
@@ -32,10 +34,17 @@ Please fork this repo, and then to begin simply run:
 
 ```bash
 yarn install
-yarn start
+yarn bootstrap
+
+yarn start:frontend
+
+# in a separate terminal:
+yarn start:backend
 ```
 
 This will run both the backend server and Storybook for frontend components. Both will live reload on code changes.
+
+This is a [Lerna](https://lerna.js.org/) monorepo with the following two packages:
 
 - [`packages/frontend/`](packages/frontend/) - Frontend codebase
 - [`packages/backend/`](packages/backend/) - Backend codebase
@@ -46,8 +55,8 @@ Please browse Storybook (http://localhost:9009/) to see and try out the various 
 
 All of the UI has been implemented - you will be integrating API calls (using [`ApiService`](packages/frontend/src/utils/ApiService.ts)) into the following two components:
 
-- [`ProfileEdit`](packages/frontend/src/components/profiles/ProfileEdit.tsx) - this lets a user edit their profile. You will be integrating an API call to update the backend about the user's DID
-- [`ProfilesList`](packages/frontend/src/components/profiles/ProfilesList.tsx) - this lists multiple profiles according to their DIDs. You will be integrating an API call to fetch which DIDs to display.
+- [`ProfileEdit`](packages/frontend/src/components/profile/ProfileEdit.tsx) - this lets a user edit their profile. You will be integrating an API call to update the backend about the user's DID
+- [`ProfilesList`](packages/frontend/src/components/profile/ProfilesList.tsx) - this lists multiple profiles according to their DIDs. You will be integrating an API call to fetch which DIDs to display.
 
 Feel free to use any of the other components in this repo, all of which have Storybook files (`*.stories.tsx`) demonstrating their usage.
 
@@ -62,25 +71,25 @@ Example API calls:
 - http://localhost:8083/v1/did/getProfileViaDid/did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw
 - http://localhost:8083/v1/did/getAllProfiles
 
-There are two stubbed out API endpoints in [`DidController`](packages/backend/src/controllers/DidController.ts), `registerDid` and `getAllProfiles`. You will be implementing these endpoints using the [`DidService`](packages/backend/src/services/DidService.ts) ORM and the [`getProfileFromCeramic`](packages/backend/src/common/ceramic-util.ts) helper.
+There are two stubbed out API endpoints in [`DidController`](packages/backend/src/controllers/DidController.ts): `registerDid` and `getAllProfiles`. You will be implementing these endpoints using the [`DidService`](packages/backend/src/services/DidService.ts) ORM and the [`getProfileFromCeramic`](packages/backend/src/common/ceramic-util.ts) helper.
 
-You can see other endpoints in `DidController` for example calls that use `DidService` and `getProfileFromCeramic`.
+You can look at other endpoints in `DidController` to see example calls that use `DidService` and `getProfileFromCeramic`.
 
 ## Instructions
 
-The exercise is complete when the following UX flow is functional:
+The exercise is complete when the following UX flow is functional.
 
-1. Navigate to the ProfileEdit component in Storybook, log in with MetaMask, and save profile data
-2. Add a new account to your MetaMask if you don't already have more than 1
-  - To do this: open the extension, click the colorful icon in the top right, click "+ Create Account"
+1. Navigate to the ProfileEdit component in Storybook, log in with MetaMask, and save some profile data
+2. Add a new account to your MetaMask if you don't already have more than one
+    - To do this, open the extension, click the colorful icon in the top right, click "+ Create Account"
 3. Repeat step #1 with your new MetaMask account and different profile data
-  - You can do this in an incognito window (to do this in Chrome you will have to your extensions, select MetaMask, and check "Allow in Incognito") or by refreshing Storybook, opening MetaMask, and connecting to your other account
-4. Navigate to the ProfilesList component in Storybook, and the profiles you created in steps #1 and #3 should be visible
+    - You can do this in an incognito window (to do this in Chrome you will have to go to your extensions, select MetaMask, and check "Allow in Incognito") or by refreshing Storybook, opening MetaMask, and connecting to your other account
+4. Navigate to the ProfilesList component in Storybook, and, once you have completed this exercise, the profiles you created in steps #1 and #3 should be visible
 
 There are multiple ways to architect this. On the frontend it will involve:
 
-- Register the user's DID to the API from the [`ProfileEdit`](packages/frontend/src/components/profiles/ProfileEdit.tsx) component
-- Fetch from the API in the [`ProfilesList`](packages/frontend/src/components/profiles/ProfilesList.tsx) component and display them all using the [`ProfileView`](packages/frontend/src/components/profiles/ProfileView.tsx) or [`ProfileLoader`](packages/frontend/src/components/profiles/ProfileLoader.tsx) components
+- Registering the user's DID to the API from the [`ProfileEdit`](packages/frontend/src/components/profile/ProfileEdit.tsx) component
+- Fetching from the API in the [`ProfilesList`](packages/frontend/src/components/profile/ProfilesList.tsx) component and displaying profiles using the [`ProfileView`](packages/frontend/src/components/profile/ProfileView.tsx) or [`ProfileLoader`](packages/frontend/src/components/profile/ProfileLoader.tsx) components
 
 On the backend it will involve using and implementing some combination of the following endpoints in [`DidController`](packages/backend/src/controllers/DidController.ts):
 
@@ -98,6 +107,6 @@ Please fork this repo, commit your implementation, and email us a link at career
 
 ## Notes
 
-- Do not spend time on any design or UI elements - concept and functionality are what matters
+- There is no need to spend time on any design or UI elements - concept and functionality are what matters
 - You may make any changes to this repo whatsoever in order to support your solution
 - Feel free to ask any clarifying questions about the assignment. However, you have leeway in how you wish to implement this as long as the UX flow outlined above works, and can make arbitrary decisions and assumptions. If you do, note them down and let us know!
