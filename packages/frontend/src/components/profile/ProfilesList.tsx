@@ -50,10 +50,6 @@ export const ProfilesList: React.FC = (props) => {
      return ( 
       <Box>
       <>
-      <div>
-        ceramic DID: <input type="text" value={did} onChange={(e) => setDid(e.target.value)} />
-        <br />
-      </div>
           {did && <ProfileLoader did={did} />}
       </>
       </Box>

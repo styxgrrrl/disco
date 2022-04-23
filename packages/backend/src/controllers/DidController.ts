@@ -24,8 +24,11 @@ export class GetProfileController {
   @Summary("Register the given DID as a Disco user")
   async registerDid(@PathParams("did") did: string): Promise<boolean> {
     console.log("@TODO: Implement me using this.DidService");
-    const result = this.DidService.registerDid(did);
+    // This looks like the did is getting registered here already
 
+    const result = this.DidService.registerDid(did);
+    console.log('the result in register is ');
+    console.log(result);
     return true;
   }
 
@@ -40,13 +43,25 @@ export class GetProfileController {
   @Get("/getAllProfiles")
   @Summary("Retrive the profiles of all Disco users")
   async getAllProfiles(): Promise<Profile[]> {
-    const result = this.DidService.getAllDids();
+    const result = await this.DidService.getAllDids();
+    console.log('here are the ids');
+    console.log(result); // now I have 1
+
 
     console.log("@TODO: Using stub implementation with hard-coded profile fetch. Implement me!");
 
     const profile = await getProfileFromCeramic("did:3:kjzl6cwe1jw148uyox3goiyrwwe3aab8vatm3apxqisd351ww0dj6v5e3f61e8b");
 
+    // the result is all the ids
+    console.log(result);
+    
+   // const profiles => need to get the profiles with the result here 
+   // this is an array
+    // const profiles = this.DidService.getLocalDiscoProfilesNow(result);
+
+
     return [profile!];
+    //return [profiles];
   }
 
 }
