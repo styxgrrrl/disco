@@ -9,8 +9,8 @@ export default {
 };
 
 const Template: ComponentStory<typeof ProfileLoader> = () => {
-  const [did, setDid] = React.useState("did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw");
-
+ const [did, setDid] = React.useState("did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw");
+// const [did, setDid] = React.useState("did:evlevalevaleva");
   return (
     <>
       <div>

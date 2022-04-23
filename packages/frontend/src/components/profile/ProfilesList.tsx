@@ -10,11 +10,32 @@ export const ProfilesList: React.FC = (props) => {
 
   const api = React.useMemo(() => new ApiService(), []);
   // @NOTE: Example api usage:
-  // console.log(await api.getProfileViaDid("did:3:kjzl6cwe1jw148uyox3goiyrwwe3aab8vatm3apxqisd351ww0dj6v5e3f61e8b"));
+  //console.log(await api.getProfileViaDid("did:3:kjzl6cwe1jw148uyox3goiyrwwe3aab8vatm3apxqisd351ww0dj6v5e3f61e8b"));
+   
 
-  throw new Error(
-    "@TODO: Please implement me using ApiService and ProfileView or ProfileLoader! This component should display all of the profiles one after the other.",
-  );
+  async function getProfileData() {
+    const ids  = await api.getAllDids(); // http://localhost:8083/v1/did/getAllDids = [] status 304
+    return ids;
+  }
+
+  if(loading){
+    setLoading(false);
+    getProfileData().then((data)=>{
+     console.log('here is the data',data);
+     data.forEach((did,i)=>{
+      return (
+        <Box>
+        <>
+            {did && <ProfileLoader did={did} />}
+        </>
+        </Box>
+       )
+     })
+    })
+  }
+//  throw new Error(
+//    "@TODO: Please implement me using ApiService and ProfileView or ProfileLoader! This component should display all of the profiles one after the other.",
+//  );
 
   if (loading) {
     return (
@@ -23,10 +44,19 @@ export const ProfilesList: React.FC = (props) => {
       </Box>
     );
   }
-
-  return (
-    <Box>
-      Coming soon!
-    </Box>
-  );
-};
+    //  I just tried one here:
+    let did = "did:3:kjzl6cwe1jw1466t7qwr0yk4jscjqhy4y7iq7z3om5hyx7dd6xc71yr751vwunw";
+    // let did = "did:evlevalevaleva"
+     return ( 
+      <Box>
+      <>
+      <div>
+        ceramic DID: <input type="text" value={did} onChange={(e) => setDid(e.target.value)} />
+        <br />
+      </div>
+          {did && <ProfileLoader did={did} />}
+      </>
+      </Box>
+    );
+    
+  }
